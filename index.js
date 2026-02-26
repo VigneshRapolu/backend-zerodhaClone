@@ -12,7 +12,11 @@ const holdingsRoute=require("./routes/holdingsRoute");
 const watchListRoute=require("./routes/watchListRoute");
 const ExpressError=require("./util/ExpressError");
 const app=express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+   origin: "http://localhost:5173", // your React port
+   credentials: true
+}));
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}))
