@@ -15,13 +15,9 @@ module.exports.Signup = async (req, res, next) => {
     const user = await User.create({ email, password, username, createdAt });
         
     const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
-    });
+   
     
-    
-    return res.status(201).json({ message: "User signed in successfully", success: true });
+    return res.status(201).json({ message: "User signed in successfully", success: true,token });
      
 };
 
@@ -41,24 +37,14 @@ module.exports.Login = async (req, res, next) => {
       throw new ExpressError(404,'Incorrect password or email'); 
     }
      const token = createSecretToken(user._id);
-    //  console.log("token is ",token);
-    //  console.log("id is ",req.user);
+   
      
      
-     res.cookie("token", token, {
-       withCredentials: true,
-       httpOnly: false,
-     });
-     
-     
-     return res.status(201).json({ message: "User logged in successfully", success: true });
+     return res.status(201).json({ message: "User logged in successfully", success: true,token });
     
   
 }
 module.exports.logout=async(req,res)=>{
-  res.cookie("token", "", {
-    httpOnly: false,   // same as your login
-    expires: new Date(0)
-  });
+ 
   res.json({ message: "Logged out successfully" });
 }

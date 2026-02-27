@@ -14,8 +14,8 @@ const ExpressError=require("./util/ExpressError");
 const app=express();
 // app.use(cors());
 app.use(cors({
-   origin: "http://localhost:5173", // your React port
-   credentials: true
+   origin: "https://zerodhaclone-dashboard-nh6z.onrender.com", // your React port
+   
 }));
 
 app.use(bodyParser.json());
